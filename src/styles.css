@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+/* html, body { height: 100%; } */
+html { height: 100%;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+body{font-size:.875rem;font-family:'Poppins', sans-serif;}
+.feather{width:16px;height:16px;vertical-align:text-bottom;}
+
+.gap-right{margin-right:10px;}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { FirebaseService } from '../../services/firebase.service'
-import { AngularFireAuth } from '@angular/fire/auth'
+import { FirebaseService } from '../../services/firebase.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Router} from '@angular/router';
 import { from } from 'rxjs';
 
@@ -13,17 +13,15 @@ import { from } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
 
+ hide: boolean = true;
 
-  hide: boolean = true;
-
-  isLoggedIn = false;
   constructor(private fb: FormBuilder,
     private router : Router,
-    public firebaseservice : FirebaseService,
+    public authService : FirebaseService,
     public afAuth : AngularFireAuth) { }
 
   ngOnInit(){
-    this.afAuth.authState.subscribe((user)=> console.log(user));
+    // this.afAuth.authState.subscribe((user)=> console.log(user));
   }
 
 
@@ -39,12 +37,7 @@ export class RegisterComponent implements OnInit {
       const email= this.registerForm.value.email;
       const password = this.registerForm.value.password;
 
-      this.afAuth.createUserWithEmailAndPassword(email,password)
-      .then(res=>{
-        this.isLoggedIn = true
-        localStorage.setItem('user',JSON.stringify(res.user))
-        this.router.navigate(['/login']);
-      })
+      this.authService.SignUp(email, password)
     }
     
   }

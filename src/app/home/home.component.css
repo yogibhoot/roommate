@@ -1,0 +1,33 @@
+mat-card{
+    display: block;
+    width: 300px;
+    text-align: center;
+    margin-left: 500px;
+}
+
+.container-fluid
+{
+    display: block;
+}
+
+.button-display
+{
+    float: right;
+}
+
+.cc{
+    margin-top: 50px;
+    width:50%;
+    margin-left:25%;
+    margin-right:25%;
+    height: 60px;
+    text-align: center;
+    background: skyblue;
+}
+
+.content-body{
+    min-width: 100%;
+    padding: 60px 1rem;
+    background: #16bca8;
+    display: block;
+}

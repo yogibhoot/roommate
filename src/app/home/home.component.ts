@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router} from '@angular/router';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  // userData = " ";
 
-  ngOnInit(): void {
+
+  constructor(private router : Router,
+    public afAuth : AngularFireAuth,
+    public authService: FirebaseService,
+    public ngZone : NgZone)
+     { }
+
+  ngOnInit()
+  {
+    // this.afAuth.authState.subscribe((user)=> console.log(user));
+
+    // this.afAuth.authState.subscribe(user => {
+    //   if (user) {
+    //     // this.userData = user.email;
+    //     console.log(user);
+    //   }
+    // });
+
+    // this.afAuth.currentUser.then(res=>{
+    //   console.warn(res?.uid)
+    // })
+  }
+
+  // signout(){
+  //   console.log('logout')
+  //   this.afAuth.signOut()
+  //   .then(res=>{
+  //     localStorage.removeItem('user')
+  //     this.router.navigate(['/login'])
+  //   })
+  //   .catch(error => {
+  //         console.log(error);
+  //       });
+  // }
+
+  gotorent()
+  {
+    this.router.navigate(['/rent'])
+  }
+
+  gotostudent()
+  {
+    this.router.navigate(['/student'])
+  }
+
+  gotoroom()
+  {
+    this.router.navigate(['/room'])
   }
 
 }

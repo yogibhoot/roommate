@@ -20,11 +20,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { from } from 'rxjs';
 import { FirebaseService } from './services/firebase.service';
 import { HomeComponent } from './home/home.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RentComponent } from './rent/rent.component';
+import { RoomComponent } from './room/room.component';
+import { RentListComponent } from './rent-list/rent-list.component';
+import { AddStudentComponent } from './add-student/add-student.component';
+import { StudentListComponent } from './student-list/student-list.component';
+import { FinderListComponent } from './finder-list/finder-list.component';
+import { EditStudentComponent } from './edit-student/edit-student.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    RentComponent,
+    RoomComponent,
+    RentListComponent,
+    AddStudentComponent,
+    StudentListComponent,
+    FinderListComponent,
+    EditStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +52,8 @@ import { HomeComponent } from './home/home.component';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]

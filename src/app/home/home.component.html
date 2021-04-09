@@ -1,1 +1,37 @@
-<p>home works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">ROOMMATE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" (click)="gotostudent()">STUDENT</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" routerLink="register">Register</a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="container-fluid">
+    
+    <button type="button" class="btn btn-primary button-display" (click)="authService.SignOut()"> logout </button>   
+    
+    <div class="row" *ngIf="authService.userData as user">
+      <p>User ID: <strong>{{user.uid}}</strong></p>
+    </div>
+
+
+    <button mat-flat-button class="cc" (click)="gotorent()">
+        <h2> Post for Rent </h2> 
+    </button>
+
+    <button mat-flat-button class="cc" style="margin-top: 5px;" (click)="gotoroom()">
+        <h2> Post for Room </h2> 
+    </button>
+
+  </div>
