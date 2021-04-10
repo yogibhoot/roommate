@@ -12,4 +12,5 @@ export interface Roomrent {
     rent: string;
     member: string
     gender: string;
+    userId: String;
  }

@@ -120,7 +120,7 @@ export class FirebaseService {
   // Create Roomrent
   AddRoomRent(roomrent: Roomrent) {
     this.roomrentsRef.push({
-      // UserId : roomrent.userId,
+      userId : roomrent.userId,
       location: roomrent.location,
       rent: roomrent.rent,
       member: roomrent.member,
