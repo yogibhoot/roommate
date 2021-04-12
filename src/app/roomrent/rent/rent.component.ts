@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { FirebaseService } from '../services/firebase.service';
+import { FirebaseService } from '../../services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Router } from '@angular/router';
 
@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 export class RentComponent implements OnInit {
 
 public roomrentForm !: FormGroup;
- userData = '';
-Id = "";
+ userData : any;
+ userId = "";
 
 constructor(
   public crudApi: FirebaseService,
@@ -21,12 +21,12 @@ constructor(
   public fb: FormBuilder,
   private router : Router)
   {
-    // this.afAuth.authState.subscribe(user => {
-    //   if (user) {
-    //     this.userData = user.uid;
-    //     console.log('ID===>',this.userData)
-    //   }
-    // })
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.userId = user.uid;
+        this.userData = user;
+      }
+    })
   }
 
 
@@ -71,14 +71,14 @@ ResetForm() {
 
 submitStudentData() {
   // console.log("submitForm===>",this.roomrentForm.value)
-  this.crudApi.AddRoomRent(this.roomrentForm.value);
+  this.crudApi.AddRoomRent({...this.roomrentForm.value, ...{userId: this.userId}});
   // this.toastr.success(this.studentForm.controls['firstName'].value + ' successfully added!');
   this.ResetForm();
  };
 
  Listroom()
  {
-   this.router.navigate(['list-rent'])
+   this.router.navigate(['home/rent/list-rent'])
  }
 
 }

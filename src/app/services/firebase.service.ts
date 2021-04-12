@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/database';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { from } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -45,11 +46,7 @@ export class FirebaseService {
           }
         })
       }
-    
-      /* Saving user data in localstorage when
-      logged in and setting up null when logged out */
-
-     
+      
     
     /* Setting up user data when sign in with username/password,
   sign up with username/password and sign in with social auth
@@ -120,7 +117,7 @@ export class FirebaseService {
   // Create Roomrent
   AddRoomRent(roomrent: Roomrent) {
     this.roomrentsRef.push({
-      // UserId : roomrent.userId,
+      userId : roomrent.userId,
       location: roomrent.location,
       rent: roomrent.rent,
       member: roomrent.member,
@@ -131,6 +128,7 @@ export class FirebaseService {
   // Create Roomfinder
   AddRoomFinder(roomfinder: Roomfinder) {
     this.roomfindersRef.push({
+      userId : roomfinder.userId,
       location: roomfinder.location,
       rent: roomfinder.rent,
       member: roomfinder.member,
@@ -149,6 +147,12 @@ export class FirebaseService {
     this.roomrentsRef = this.db.list('Rooms');
     return this.roomrentsRef;
   }  
+
+  // Fetch RoomRent using userID List
+  GetUserRoomRentList(id: string) {
+    this.roomrentsRef = this.db.list('Rooms/' + id);
+    return this.roomrentsRef;
+  } 
 
   // Fetch RoomFinder List
   GetRoomFinderList() {

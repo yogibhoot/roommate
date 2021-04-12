@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
+import { FirebaseService } from '../../services/firebase.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -28,10 +28,10 @@ export class AddStudentComponent implements OnInit
 
   studenForm() {
     this.studentForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: [''],
-      email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-      mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      mobileNumber: ['', Validators.required]
     })  
   }
 
@@ -62,7 +62,7 @@ export class AddStudentComponent implements OnInit
    };
 
    gotopage(){
-     this.router.navigate(['/list-student'])
+     this.router.navigate(['home/add-student/list-student'])
    }
 
 }

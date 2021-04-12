@@ -49,17 +49,22 @@ export class HomeComponent implements OnInit {
 
   gotorent()
   {
-    this.router.navigate(['/rent'])
+    this.router.navigate(['home/rent'])
   }
 
   gotostudent()
   {
-    this.router.navigate(['/student'])
+    this.router.navigate(['home/add-student'])
+  }
+
+  gotoprofile()
+  {
+    this.router.navigate(['home/userprofile'])
   }
 
   gotoroom()
   {
-    this.router.navigate(['/room'])
+    this.router.navigate(['home/room'])
   }
 
 }

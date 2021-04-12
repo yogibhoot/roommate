@@ -1,8 +1,31 @@
-mat-card{
-    display: block;
-    width: 300px;
-    text-align: center;
-    margin-left: 500px;
+mat-card
+{
+    margin-left: 430px;
+    height: fit-content;  
+    box-shadow: 5px 5px #a600d0;
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.cardindex2 {
+    background: linear-gradient(to top, #f371ff -2%, #a600d0 100%);
+    border-radius: 25px;
+    height: 65%;
+}
+
+.cardindex4 {
+    background: linear-gradient(to top, #77ff25 -2%, #00b411 100%);
+    border-radius: 25px;
+    height: 65%;
+}
+
+.cc{
+    height: 150px;
+    width: 150px;
 }
 
 .container-fluid
@@ -15,19 +38,10 @@ mat-card{
     float: right;
 }
 
-.cc{
-    margin-top: 50px;
-    width:50%;
-    margin-left:25%;
-    margin-right:25%;
-    height: 60px;
-    text-align: center;
-    background: skyblue;
-}
-
 .content-body{
     min-width: 100%;
     padding: 60px 1rem;
     background: #16bca8;
     display: block;
 }
+

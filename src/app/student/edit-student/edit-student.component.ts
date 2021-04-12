@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FirebaseService } from '../services/firebase.service';
+import { FirebaseService } from '../../services/firebase.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from '@angular/common';
 
@@ -46,10 +46,10 @@ export class EditStudentComponent implements OnInit {
 
   updateStudentData() {
     this.editForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      firstName: ['', Validators.required],
       lastName: [''],
-      email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-      mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
+      email: ['', Validators.required],
+      mobileNumber: ['', Validators.required]
     })
   }
 

@@ -39,8 +39,12 @@ export class RegisterComponent implements OnInit {
 
       this.authService.SignUp(email, password)
     }
-    
   }
+
+  gotologinpage()
+    {
+      this.router.navigate(['login'])
+    }
 
 
 }

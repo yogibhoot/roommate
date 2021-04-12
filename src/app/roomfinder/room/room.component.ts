@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/auth'
 import { Router } from '@angular/router';
-import {  FirebaseService } from '../services/firebase.service';
+import {  FirebaseService } from '../../services/firebase.service';
 
 @Component({
   selector: 'app-room',
@@ -11,12 +12,23 @@ import {  FirebaseService } from '../services/firebase.service';
 export class RoomComponent implements OnInit {
 
   public roomfinderForm !: FormGroup;
+  userData : any;
+  userId = "";
  
   constructor(
     public crudApi: FirebaseService,
+    public afAuth : AngularFireAuth,
     public fb: FormBuilder,
     private router : Router
-  ) { }
+  ) {
+    this.afAuth.authState.subscribe(user =>{
+      if(user)
+      {
+        this.userId = user.uid;
+        this.userData = user;
+      }
+    })
+   }
   
   
   ngOnInit() {
@@ -31,6 +43,10 @@ export class RoomComponent implements OnInit {
       member: ['', Validators.required],
       gender: ['', Validators.required]
     })  
+  }
+
+  get UserId() {
+    return this.roomfinderForm.get('userId');
   }
   
   get location() {
@@ -54,14 +70,14 @@ export class RoomComponent implements OnInit {
   }  
   
   submitStudentData() {
-    this.crudApi.AddRoomFinder(this.roomfinderForm.value);
+    this.crudApi.AddRoomFinder({...this.roomfinderForm.value, ...{userId : this.userId}});
     // this.toastr.success(this.studentForm.controls['firstName'].value + ' successfully added!');
     this.ResetForm();
    };
 
    RoomFinder()
    {
-     this.router.navigate(['list-room'])
+     this.router.navigate(['home/room/list-room'])
    }
   
   }

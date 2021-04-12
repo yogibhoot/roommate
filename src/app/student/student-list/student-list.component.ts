@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
-import { Student } from './../services/student';
+import { FirebaseService } from '../../services/firebase.service';
+import { Student } from '../../services/student';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,8 +19,14 @@ export class StudentListComponent implements OnInit {
   
 
   constructor(
-    public crudApi: FirebaseService
+    public crudApi: FirebaseService,
+    private router : Router
     ){ }
+
+    editStudent()
+    {
+      this.router.navigate(['home/add-student/edit-student'])
+    }
 
 
   ngOnInit() {

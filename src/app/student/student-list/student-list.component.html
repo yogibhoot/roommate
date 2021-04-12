@@ -31,7 +31,8 @@
             <td>{{student.email}}</td>
             <td>{{student.mobileNumber}}</td>
             <td class="text-center action-block">
-              <span class="mr-2 btn btn-outline-primary btn-sm" routerLink="/edit-student/{{student.$key}}">Edit</span> 
+              <!-- <span class="mr-2 btn btn-outline-primary btn-sm" routerLink="./student/edit-student/{{student.$key}}">Edit</span> -->
+              <span class="mr-2 btn btn-outline-primary btn-sm" (click)="editStudent()" >Edit</span>
               <span class="btn btn-outline-danger btn-sm" (click)="deleteStudent(student)">Delete</span>
             </td>
           </tr>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
-import { Roomfinder } from '../services/roomfinder';
+import { FirebaseService } from '../../services/firebase.service';
+import { Roomfinder } from '../../services/roomfinder';
 
 @Component({
   selector: 'app-finder-list',

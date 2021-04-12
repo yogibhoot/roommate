@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
-import { Roomrent } from '../services/roomrent';
+import { FirebaseService } from '../../services/firebase.service';
+import { Roomrent } from '../../services/roomrent';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rent-list',
@@ -8,8 +9,7 @@ import { Roomrent } from '../services/roomrent';
   styleUrls: ['./rent-list.component.css']
 })
 export class RentListComponent implements OnInit {
-  
-  p: number = 1;
+
   Roomrent !: Roomrent[];
   hideWhenNoStudent: boolean = false;
   noData: boolean = false;
@@ -20,22 +20,35 @@ export class RentListComponent implements OnInit {
     public crudApi: FirebaseService
     ){ }
 
+    // getUser()
+    // {
+    //   return this.db.list(`Rooms`)
+    //   .snapshotChanges()
+    //   .pipe(map(items => { 
+    //     this.Roomrent = [];            // <== new way of chaining
+    //     return items.map(a => {
+    //       const data = a.payload.val();
+    //       const key = a.payload.key;
+    //       return {key, data};           // or {key, ...data} in case data is Obj
+    //     });
+    //   }));
+    // }
+
 
   ngOnInit() {
     this.dataState();
     let s = this.crudApi.GetRoomRentList(); 
     s.snapshotChanges().subscribe(data => {
       this.Roomrent = [];
-      console.log('DATA===',data)
       data.forEach(item => {
-        console.log('ITEM===',item)
         let a = item.payload.toJSON(); 
         //  a['$key'] = item.key;
         // a = item.key;
-        console.log("KEY+++++++>",a)
+        console.log("KEY+++++++>",item.key)
         this.Roomrent.push(a as Roomrent);
       })
     })
+
   }
 
   dataState() {     

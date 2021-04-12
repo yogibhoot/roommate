@@ -1,7 +1,8 @@
 export interface Roomfinder {
-        $key: string;
+        // $key: string;
         location: string;
         rent: string;
         member: string
         gender: Number;
+        userId: String;
 }
