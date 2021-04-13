@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { Roomrent } from '../../services/roomrent';
-import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rent-list',
@@ -14,47 +14,48 @@ export class RentListComponent implements OnInit {
   hideWhenNoStudent: boolean = false;
   noData: boolean = false;
   preLoader: boolean = true;
-  
+
 
   constructor(
-    public crudApi: FirebaseService
-    ){ }
+    public crudApi: FirebaseService,
+    private router: Router
+  ) { }
 
-    // getUser()
-    // {
-    //   return this.db.list(`Rooms`)
-    //   .snapshotChanges()
-    //   .pipe(map(items => { 
-    //     this.Roomrent = [];            // <== new way of chaining
-    //     return items.map(a => {
-    //       const data = a.payload.val();
-    //       const key = a.payload.key;
-    //       return {key, data};           // or {key, ...data} in case data is Obj
-    //     });
-    //   }));
-    // }
+  // getUser()
+  // {
+  //   return this.db.list(`Rooms`)
+  //   .snapshotChanges()
+  //   .pipe(map(items => { 
+  //     this.Roomrent = [];            // <== new way of chaining
+  //     return items.map(a => {
+  //       const data = a.payload.val();
+  //       const key = a.payload.key;
+  //       return {key, data};           // or {key, ...data} in case data is Obj
+  //     });
+  //   }));
+  // }
 
 
   ngOnInit() {
     this.dataState();
-    let s = this.crudApi.GetRoomRentList(); 
+    let s = this.crudApi.GetRoomRentList();
     s.snapshotChanges().subscribe(data => {
       this.Roomrent = [];
       data.forEach(item => {
-        let a = item.payload.toJSON(); 
+        let a = item.payload.toJSON();
         //  a['$key'] = item.key;
         // a = item.key;
-        console.log("KEY+++++++>",item.key)
+        console.log("KEY+++++++>", item.key)
         this.Roomrent.push(a as Roomrent);
       })
     })
 
   }
 
-  dataState() {     
+  dataState() {
     this.crudApi.GetRoomRentList().valueChanges().subscribe(data => {
       this.preLoader = false;
-      if(data.length <= 0){
+      if (data.length <= 0) {
         this.hideWhenNoStudent = false;
         this.noData = true;
       } else {
@@ -64,8 +65,12 @@ export class RentListComponent implements OnInit {
     })
   }
 
-  deleteStudent(Roomrent : any) {
-    if (window.confirm('Are sure you want to delete this Roomrent ?')) { 
+  gotohome() {
+    this.router.navigate(['home'])
+  }
+
+  deleteStudent(Roomrent: any) {
+    if (window.confirm('Are sure you want to delete this Roomrent ?')) {
       this.crudApi.DeleteRoomRent(Roomrent.$key)
     }
   }

@@ -1,33 +1,38 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <!-- <div class="container-fluid"> -->
-    <a class="navbar-brand" href="#">ROOMMATE</a>
-    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+  <a class="navbar-brand" href="#">ROOMMATE</a>
+  <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
       aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> -->
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="margin-left: 0%;">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" (click)="gotostudent()">Student</a>
-        </li>
-        <!-- <li class="nav-item">
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="margin-left: 0%;">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" (click)="gotostudent()">Student</a>
+      </li>
+      <!-- <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li> -->
-      </ul>
-    </div>
-    <div class="nav-item">
-      <a class="nav-link active"  aria-current="page"  style="float: right;" (click)="gotoprofile()">Profile</a>
-    </div>
-    <button class="btn btn-outline-success" style="float: right;" (click)="authService.SignOut()" type="submit">Logout</button>
+    </ul>
+  </div>
+  <div class="nav-item">
+    <a class="nav-link active" aria-current="page" style="float: right;" (click)="gotoprofile()">Profile</a>
+  </div>
+  <button class="btn btn-outline-success" style="float: right;" (click)="authService.SignOut()"
+    type="submit">Logout</button>
   <!-- </div> -->
 </nav>
 
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="container-fluid">
 
-  <!-- <div class="row" *ngIf="authService.userData as user">
+<!-- <div class="container-fluid">
+
+  <div class="row" *ngIf="authService.userData as user">
     <p>User ID: <strong>{{user.uid}}</strong></p>
-  </div> -->
+  </div>
 
   <div class="row" style="text-align: center; margin-top: 80px;">
 
@@ -53,5 +58,41 @@
       </div>
     </mat-card>
 
+  </div>
+</div> -->
+
+<div class="well" style="height: 100%;">
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane active in" id="home">
+
+      <div class="container-fluid" style="margin-top: 2%;">
+        <div class="row" style="text-align: center; margin-top: 10%;">
+
+          <div class="example z-depth-5">
+            <mat-card>
+              <div class="card-body cardindex2">
+                <button mat-flat-button class="cc" (click)="gotorent()" style="background-color:  #fdfbfb; ">
+                  <h2> Post for Rent </h2>
+                </button>
+              </div>
+            </mat-card>
+          </div>
+
+          <div>
+            <p></p>
+          </div>
+
+          <mat-card style="margin-left: 10px;">
+            <div class="card-body cardindex4">
+              <button mat-flat-button class="cc" (click)="gotoroom()" style=" background-color:  #fdfbfb;  ">
+                <h2> Post for Room </h2>
+              </button>
+            </div>
+          </mat-card>
+
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>

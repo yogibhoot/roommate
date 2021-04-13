@@ -16,41 +16,41 @@ export class UserposttimelineComponent implements OnInit {
   hideWhenNoStudent: boolean = false;
   noData: boolean = false;
   preLoader: boolean = true;
-  userData : any;
+  userData: any;
   userId = "";
 
-  constructor(public crudApi : FirebaseService,
-    public afAuth : AngularFireAuth,
-    private router : Router) 
-    { 
-      this.afAuth.authState.subscribe(user => {
-        if (user) {
-          this.userId = user.uid;
-          console.warn(this.userId)
-          this.userData = user;
-        }
-      })
-    }
+  constructor(public crudApi: FirebaseService,
+    public afAuth: AngularFireAuth,
+    private router: Router) {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.userId = user.uid;
+        console.warn(this.userId)
+        this.userData = user;
+        console.log(this.userData)
+      }
+    })
+  }
 
   ngOnInit() {
     this.dataState();
-    let s = this.crudApi.GetUserRoomRentList(this.userId); 
+    let s = this.crudApi.GetUserRoomRentList(this.userId);
     s.snapshotChanges().subscribe(data => {
       this.Roomrent = [];
       data.forEach(item => {
-        let a = item.payload.toJSON(); 
+        let a = item.payload.toJSON();
         //  a['$key'] = item.key;
         // a = item.key;
-        console.log("KEY+++++++>",item.key)
+        console.log("KEY+++++++>", item.key)
         this.Roomrent.push(a as Roomrent);
       })
     })
   }
 
-  dataState() {     
+  dataState() {
     this.crudApi.GetUserRoomRentList(this.userId).valueChanges().subscribe(data => {
       this.preLoader = false;
-      if(data.length <= 0){
+      if (data.length <= 0) {
         this.hideWhenNoStudent = false;
         this.noData = true;
       } else {
@@ -60,14 +60,16 @@ export class UserposttimelineComponent implements OnInit {
     })
   }
 
-  gotoprofile()
-  {
+  gotoprofile() {
     this.router.navigate(['home/userprofile'])
   }
 
-  gotoroomfinder(){
-    this.router.navigate(['home/postroomfinder'])
+  gotohome() {
+    this.router.navigate(['home'])
+  }
 
+  gotoroomfinder() {
+    this.router.navigate(['home/postroomfinder'])
   }
 
 }

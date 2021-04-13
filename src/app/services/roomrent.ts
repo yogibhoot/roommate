@@ -6,12 +6,3 @@ export interface Roomrent {
     gender: string;
     userId: String;
  }
-
-
- export interface Roomrent {
-    $key : string;
-    location: string;
-    rent: string;
-    member: string
-    gender: string;
- }

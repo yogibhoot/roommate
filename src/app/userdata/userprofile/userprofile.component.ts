@@ -32,4 +32,8 @@ export class UserprofileComponent implements OnInit {
     this.router.navigate(['home/postroomfinder'])
   }
 
+  gotohome() {
+    this.router.navigate(['home'])
+  }
+
 }

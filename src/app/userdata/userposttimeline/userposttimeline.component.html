@@ -6,15 +6,9 @@
         </button> -->
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item">
-              <a class="nav-link active" aria-current="page" (click)="Listroom()">Roomrent-List</a>
-            </li> -->
-        <!-- <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li> -->
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" (click)="gotohome()">Dashboard</a>
+        </li>
       </ul>
     </div>
     <button class="btn btn-outline-success" type="submit" (click)="crudApi.SignOut()">Logout</button>
@@ -29,7 +23,7 @@
   <ul class="nav nav-tabs">
     <li><a data-toggle="tab" (click)="gotoprofile()">Profile</a></li>
     <li class="active"><a data-toggle="tab">RoomRent-Post Timeline</a></li>
-    <li (click)="gotoroomfinder()"><a data-toggle="tab">RoomFinder-Post Timeline</a></li>
+    <li><a data-toggle="tab" (click)="gotoroomfinder()">RoomFinder-Post Timeline</a></li>
   </ul>
   <div id="myTabContent" class="tab-content">
     <div class="tab-pane active in" id="home">
@@ -37,26 +31,26 @@
       <div class="container">
 
         <div class="panel panel-default" style="margin-top: 2%;">
-             
+
           <div class="panel-body">
-        <div class="col">
-          <div class="col-md-12 mx-auto my-5" *ngFor="let student of Roomrent">
-            <mat-card style="margin-left: 35%;">
-             
-             
-                <mat-card-title style="text-align: center;">
-                  <!-- <h4>{{student.key}}</h4> -->
-                  <h4>{{student.location}}</h4>
-                  <h4>{{student.rent}}</h4>
-                  <h4>{{student.member}}</h4>
-                  <h4>{{student.gender}}</h4>
-                  <h4>{{student.userId}}</h4>
-                </mat-card-title>
-      
-            </mat-card>
+            <div class="col">
+              <div class="col-md-12 mx-auto my-5" *ngFor="let student of Roomrent">
+                <mat-card style="margin-left: 35%;">
+
+
+                  <mat-card-title style="text-align: center;">
+                    <!-- <h4>{{student.key}}</h4> -->
+                    <h4>{{student.location}}</h4>
+                    <h4>{{student.rent}}</h4>
+                    <h4>{{student.member}}</h4>
+                    <h4>{{student.gender}}</h4>
+                    <h4>{{student.userId}}</h4>
+                  </mat-card-title>
+
+                </mat-card>
+              </div>
+            </div>
           </div>
-        </div>
-        </div>
         </div>
       </div>
 

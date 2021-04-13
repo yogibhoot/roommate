@@ -6,66 +6,65 @@
     </button> -->
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" (click)="Listroom()">Roomrent-List</a>
-        </li> -->
-      </ul>      
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" (click)="gotohome()">Dashboard</a>
+        </li>
+      </ul>
     </div>
     <button class="btn btn-outline-success" type="submit" (click)="crudApi.SignOut()">Logout</button>
   </div>
 </nav>
 
-<!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h2 class="h2">RoomRent List</h2>
-  </div>
-  
-  <div class="pricing-header mx-auto">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<!-- <div class="pricing-header mx-auto">
   
     <div class="table-responsive" >
       <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
         <thead>
-          <tr> -->
-            <!-- <th scope="col">Room Id</th> -->
-            <!-- <th scope="col">Address</th>
+          <tr>
+<th scope="col">Room Id</th>
+<th scope="col">Address</th>
             <th scope="col">Rent</th>
             <th scope="col">Member</th>
-            <th scope="col">Gender</th> -->
-            <!-- <th class="text-center" scope="col">Edit</th> -->
-          <!-- </tr>
+            <th scope="col">Gender</th>
+<th class="text-center" scope="col">Edit</th>
+</tr>
         </thead>
         <tbody>
   
-          <tr *ngFor="let student of Roomrent ; let i = index;"> -->
-            <!-- <th scope="row">{{student.$key}}</th> -->
-            <!-- <td>{{student.location}}</td>
+          <tr *ngFor="let student of Roomrent ; let i = index;">
+<th scope="row">{{student.$key}}</th>
+<td>{{student.location}}</td>
             <td> {{student.rent}}</td>
             <td>{{student.member}}</td>
-            <td>{{student.gender}}</td> -->
-            <!-- <td class="text-center action-block">
+            <td>{{student.gender}}</td>
+<td class="text-center action-block">
               <span class="mr-2 btn btn-outline-primary btn-sm" routerLink="/edit-student/{{student.$key}}">Edit</span> 
               <span class="btn btn-outline-danger btn-sm" (click)="deleteStudent(student)">Delete</span>
-            </td> -->
-          <!-- </tr>
+            </td>
+</tr>
         </tbody>
       </table>
     </div>
-  
-    
   </div> -->
 
-  <div style="text-align: center;">
-    <h1>RoomRent</h1>
-  </div>
+<div style="text-align: center;">
+  <h1>RoomRent</h1>
+</div>
 
-  <div class="container" style="margin-left :3%">
+<!-- <div class="container" style="margin-left :3%">
     <div class="col">
       <div class="col-md-3 mx-auto my-5" *ngFor="let student of Roomrent">
         <mat-card>
          
          
             <mat-card-title style="text-align: center;">
-              <!-- <h4>{{student.key}}</h4> -->
-              <h4>{{student.location}}</h4>
+<h4>{{student.key}}</h4>
+<h4>{{student.location}}</h4>
               <h4>{{student.rent}}</h4>
               <h4>{{student.member}}</h4>
               <h4>{{student.gender}}</h4>
@@ -75,4 +74,39 @@
         </mat-card>
       </div>
     </div>
+  </div> -->
+
+<div class="well">
+
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane active in" id="home">
+
+      <div class="container">
+
+        <div class="panel panel-default" style="margin-top: 2%;">
+
+          <div class="panel-body">
+            <div class="col">
+              <div class="col-md-12 mx-auto my-5" *ngFor="let student of Roomrent">
+                <mat-card style="margin-left: 35%;">
+
+
+                  <mat-card-title style="text-align: center;">
+                    <!-- <h4>{{student.key}}</h4> -->
+                    <h4>{{student.location}}</h4>
+                    <h4>{{student.rent}}</h4>
+                    <h4>{{student.member}}</h4>
+                    <h4>{{student.gender}}</h4>
+                    <h4>{{student.userId}}</h4>
+                  </mat-card-title>
+
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+</div>
