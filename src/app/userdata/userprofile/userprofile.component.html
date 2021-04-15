@@ -15,10 +15,7 @@
   </div>
 </nav>
 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
 <div class="well">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab">Profile</a></li>
@@ -39,7 +36,8 @@
                   id="profile-image1" class="img-circle img-responsive">
                 <div class="col-md-4 col-sm-6 col-xs-12">
                   <div class="text-center" style="margin-top: 5px;">
-                    <input type="file" class="text-center center-block well well-sm">
+                    <!-- <input type="file" > -->
+                    <input type="file" class="text-center center-block well well-sm" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off" />
                   </div>
                 </div>
 

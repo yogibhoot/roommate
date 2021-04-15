@@ -21,6 +21,7 @@ import { StudentModule } from './student/student.module';
 import { RoomrentModule } from './roomrent/roomrent.module';
 import { RoomfinderModule } from './roomfinder/roomfinder.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireStorageModule, AngularFireStorageReference, AngularFireUploadTask} from '@angular/fire/storage';
 import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserdataModule } from './userdata/userdata.module';
@@ -35,7 +36,8 @@ import { UserdataModule } from './userdata/userdata.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     AuthModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase,"cloud"),
+    AngularFireStorageModule,
     AngularFireDatabaseModule,
     MatCardModule,
     MatButtonModule,

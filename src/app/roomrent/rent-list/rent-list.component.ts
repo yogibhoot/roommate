@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Roomrent } from '../../services/roomrent';
 import { Router } from '@angular/router';
 
@@ -15,26 +17,16 @@ export class RentListComponent implements OnInit {
   noData: boolean = false;
   preLoader: boolean = true;
 
+  restoProfileData !: AngularFireList<Roomrent[]>;
+  restoProfileRef !: AngularFireList<Roomrent[]>;
+
 
   constructor(
     public crudApi: FirebaseService,
+    private afAuth: AngularFireAuth, 
+    private afDatabase: AngularFireDatabase,
     private router: Router
   ) { }
-
-  // getUser()
-  // {
-  //   return this.db.list(`Rooms`)
-  //   .snapshotChanges()
-  //   .pipe(map(items => { 
-  //     this.Roomrent = [];            // <== new way of chaining
-  //     return items.map(a => {
-  //       const data = a.payload.val();
-  //       const key = a.payload.key;
-  //       return {key, data};           // or {key, ...data} in case data is Obj
-  //     });
-  //   }));
-  // }
-
 
   ngOnInit() {
     this.dataState();

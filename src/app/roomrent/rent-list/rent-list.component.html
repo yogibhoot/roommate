@@ -56,27 +56,8 @@
   <h1>RoomRent</h1>
 </div>
 
-<!-- <div class="container" style="margin-left :3%">
-    <div class="col">
-      <div class="col-md-3 mx-auto my-5" *ngFor="let student of Roomrent">
-        <mat-card>
-         
-         
-            <mat-card-title style="text-align: center;">
-<h4>{{student.key}}</h4>
-<h4>{{student.location}}</h4>
-              <h4>{{student.rent}}</h4>
-              <h4>{{student.member}}</h4>
-              <h4>{{student.gender}}</h4>
-              <h4>{{student.userId}}</h4>
-            </mat-card-title>
-  
-        </mat-card>
-      </div>
-    </div>
-  </div> -->
 
-<div class="well">
+<div class="well" style="height: fit-content;">
 
   <div id="myTabContent" class="tab-content">
     <div class="tab-pane active in" id="home">
@@ -90,9 +71,9 @@
               <div class="col-md-12 mx-auto my-5" *ngFor="let student of Roomrent">
                 <mat-card style="margin-left: 35%;">
 
-
                   <mat-card-title style="text-align: center;">
-                    <!-- <h4>{{student.key}}</h4> -->
+                    <h4>{{student.$key}}</h4>
+                    <img [src]="student.imageUrl" width="200px" height="150px" />
                     <h4>{{student.location}}</h4>
                     <h4>{{student.rent}}</h4>
                     <h4>{{student.member}}</h4>

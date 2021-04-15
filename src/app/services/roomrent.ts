@@ -5,4 +5,5 @@ export interface Roomrent {
     member: string
     gender: string;
     userId: String;
+    imageUrl : string;
  }

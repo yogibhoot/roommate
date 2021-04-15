@@ -30,6 +30,7 @@
             <td>{{student.firstName}} {{student.lastName}}</td>
             <td>{{student.email}}</td>
             <td>{{student.mobileNumber}}</td>
+            <td><img [src]="student.imageUrl" width="200px" height="150px" /></td>
             <td class="text-center action-block">
               <!-- <span class="mr-2 btn btn-outline-primary btn-sm" routerLink="./student/edit-student/{{student.$key}}">Edit</span> -->
               <span class="mr-2 btn btn-outline-primary btn-sm" (click)="editStudent()" >Edit</span>

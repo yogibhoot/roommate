@@ -34,7 +34,7 @@ export class UserposttimelineComponent implements OnInit {
 
   ngOnInit() {
     this.dataState();
-    let s = this.crudApi.GetUserRoomRentList(this.userId);
+    let s = this.crudApi.GetRoomRentList();
     s.snapshotChanges().subscribe(data => {
       this.Roomrent = [];
       data.forEach(item => {
@@ -48,7 +48,9 @@ export class UserposttimelineComponent implements OnInit {
   }
 
   dataState() {
-    this.crudApi.GetUserRoomRentList(this.userId).valueChanges().subscribe(data => {
+
+    this.crudApi.GetRoomRentList().valueChanges().subscribe(data => {
+      console.log("userId data", data)
       this.preLoader = false;
       if (data.length <= 0) {
         this.hideWhenNoStudent = false;

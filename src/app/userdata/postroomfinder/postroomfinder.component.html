@@ -15,39 +15,73 @@
   </div>
 </nav>
 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
 <div class="well">
   <ul class="nav nav-tabs">
     <li><a data-toggle="tab" (click)="gotoprofile()">Profile</a></li>
     <li><a data-toggle="tab" (click)="gotopost()">RoomRent-Post Timeline</a></li>
     <li class="active"><a data-toggle="tab">RoomFinder-Post Timeline</a></li>
   </ul>
+
   <div id="myTabContent" class="tab-content">
     <div class="tab-pane active in" id="home">
 
-      <div class="container">
+      <!-- <div class="container">
 
         <div class="panel panel-default" style="margin-top: 2%;">
+          <div class="panel-body" >
+            <div class="col" >
 
-          <div class="panel-body">
-            <div class="col">
-              <div class="col-md-12 mx-auto my-5" *ngFor="let student of Roomfinder">
-                <mat-card style="margin-left: 35%;">
+              <div class="row" *ngIf="crudApi.userData as user">
+                <div class="col-md-12 mx-auto my-5" *ngFor="let student of Roomfinder">
+                  <div *ngIf="user.uid == student.userId">
+
+                    <mat-card style="margin-left: 35%;">
+                      <mat-card-title style="text-align: center;">
+      <h4>{{student.key}}</h4>
+      <h4>{{student.location}}</h4>
+                        <h4>{{student.rent}}</h4>
+                        <h4>{{student.member}}</h4>
+                        <h4>{{student.gender}}</h4>
+                        <h4>{{student.userId}}</h4>
+                      </mat-card-title>
+                    </mat-card>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="well" style="height: fit-content;">
+
+        <div class="container">
+          <div class="panel panel-default" style="margin-top: 2%;">
+            <div class="panel-body">
+              <div class="col">
+
+                <div *ngIf="crudApi.userData as user">
+                  <div class="col-md-12 mx-auto my-5" *ngFor="let student of Roomfinder">
+                    <div *ngIf="user.uid == student.userId">
+
+                      <mat-card style="margin-left: 35%;">
+                        <mat-card-title style="text-align: center;">
+                          <h4>{{student.$key}}</h4>
+                          <h4>{{student.location}}</h4>
+                          <h4>{{student.rent}}</h4>
+                          <h4>{{student.member}}</h4>
+                          <h4>{{student.gender}}</h4>
+                          <h4>{{student.userId}}</h4>
+                        </mat-card-title>
+                      </mat-card>
+
+                    </div>
+                  </div>
+                </div>
 
 
-                  <mat-card-title style="text-align: center;">
-                    <!-- <h4>{{student.key}}</h4> -->
-                    <h4>{{student.location}}</h4>
-                    <h4>{{student.rent}}</h4>
-                    <h4>{{student.member}}</h4>
-                    <h4>{{student.gender}}</h4>
-                    <h4>{{student.userId}}</h4>
-                  </mat-card-title>
-
-                </mat-card>
               </div>
             </div>
           </div>
@@ -56,3 +90,4 @@
 
     </div>
   </div>
+</div>

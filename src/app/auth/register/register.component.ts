@@ -33,10 +33,8 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(){
     if (this.registerForm.valid) {
-
       const email= this.registerForm.value.email;
       const password = this.registerForm.value.password;
-
       this.authService.SignUp(email, password)
     }
   }

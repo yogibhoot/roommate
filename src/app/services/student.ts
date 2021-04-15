@@ -4,4 +4,5 @@ export interface Student {
     lastName: string;
     email: string
     mobileNumber: Number;
+    imageUrl : string;
 }
