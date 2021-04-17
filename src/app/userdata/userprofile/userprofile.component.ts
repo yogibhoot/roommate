@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { FirebaseService } from '../../services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { User1 } from '../../services/user';
 import { Router } from '@angular/router';
 import { AngularFireStorage } from "@angular/fire/storage";
-import { map, finalize } from "rxjs/operators";
-import { Observable } from "rxjs";
+import { finalize } from "rxjs/operators";
 
 @Component({
   selector: 'app-userprofile',
@@ -14,43 +15,98 @@ import { Observable } from "rxjs";
 })
 export class UserprofileComponent implements OnInit {
 
-  title = "cloudsSorage";
-  // selectedFile : File = null;
-  fb : any;
-  downloadURL !: Observable<string>;
+  imgSrc: string = '';
+  selectedImage: any = null;
+  isSubmitted: boolean = false;
+  userData: any;
+  userId = "";
+
+  hideWhenNoStudent: boolean = false;
+  noData: boolean = false;
+  preLoader: boolean = true;
+  User1 !: User1[];
 
   constructor(
-    public crudApi : FirebaseService,
-    private router : Router,
-    private afauth : AngularFireAuth,
-    private storage: AngularFireStorage) {}
+    public crudApi: FirebaseService,
+    public afAuth: AngularFireAuth,
+    private storage: AngularFireStorage,
+    private router: Router) {
+      this.afAuth.authState.subscribe(user => {
+        if (user) {
+          this.userId = user.uid;
+          this.userData = user;
+        }
+      })
+    }
 
-  ngOnInit(): void { }
+  ngOnInit(){ 
+    this.crudApi.GetUserDataList();
+    this.dataState();
+    let s = this.crudApi.GetUserDataList();
+    s.snapshotChanges().subscribe(data => {
+      console.warn("USER1",data)
+      this.User1 = [];
+      data.forEach(item => {
+        let a = item.payload.toJSON();
+        //  a['$key'] = item.key;
+        // a = item.key;
+        console.log("KEY+++++++>", item.key)
+        this.User1.push(a as User1);
+      })
+    })
+  }
 
-  onFileSelected(event : any) {
-    // var n = Date.now();
-    // const file = event.target.files[0];
-    // const filePath = `UserImages/${n}`;
-    // const fileRef = this.storage.ref(filePath);
-    // const task = this.storage.upload(`UserImages/${n}`, file);
-    // task
-    //   .snapshotChanges()
-    //   .pipe(
-    //     finalize(() => {
-    //       this.downloadURL = fileRef.getDownloadURL();
-    //       this.downloadURL.subscribe(url => {
-    //         if (url) {
-    //           this.fb = url;
-    //         }
-    //         console.log(this.fb);
-    //       });
-    //     })
-    //   )
-    //   .subscribe(url => {
-    //     if (url) {
-    //       console.log(url);
-    //     }
-    //   });
+  dataState() {
+    this.crudApi.GetUserDataList().valueChanges().subscribe(data => {
+      this.preLoader = false;
+      if (data.length <= 0) {
+        this.hideWhenNoStudent = false;
+        this.noData = true;
+      } else {
+        this.hideWhenNoStudent = true;
+        this.noData = false;
+      }
+    })
+  }
+
+  showPreview(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.imgSrc = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+    }
+    else {
+      this.imgSrc = 'https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg';
+      this.selectedImage = null;
+    }
+  }
+
+  userForm = new FormGroup({
+    Username: new FormControl('', Validators.required),
+    imageUrl: new FormControl('', Validators.required)
+  })
+
+  ResetForm() {
+    this.userForm.reset();
+    this.imgSrc = 'https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg';
+    this.isSubmitted = false;
+    this.selectedImage = null;
+  }
+
+  submitUserData() {
+    this.isSubmitted = true;
+    var filePath = `UserImage/${this.selectedImage.name}`;
+    const fileRef = this.storage.ref(filePath);
+    this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((url) => {
+          //  formValue['imageUrl'] = url;
+          this.crudApi.AddUserData({...this.userForm.value,...{ userId: this.userId }, ...{ imageUrl: url } });
+          this.ResetForm();
+        })
+      })
+    ).subscribe();
   }
 
   gotoposttime()

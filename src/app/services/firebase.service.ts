@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Roomrent } from '../services/roomrent';
 import { Roomfinder } from '../services/roomfinder';
 import { Student } from '../services/student';
-import { User } from "../services/user";
+import { User, User1 } from "../services/user";
 import { Router } from '@angular/router';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -23,6 +23,9 @@ export class FirebaseService {
 
   studentsRef !: AngularFireList<any>;
   studentRef !: AngularFireObject<any>;
+
+  userdatasRef !: AngularFireList<any>;
+  userdataRef !: AngularFireObject<any>;
 
   roomrentsRef!: AngularFireList<any>;
   roomrentRef!: AngularFireObject<any>;
@@ -132,6 +135,19 @@ export class FirebaseService {
       gender: roomfinder.gender,
       imageUrl: roomfinder.imageUrl
     })
+  }
+
+  AddUserData(user1: User1) {
+    this.userdatasRef.push({
+      userId: user1.userId,
+      Username: user1.Username,
+      imageUrl: user1.imageUrl
+    })
+  }
+
+  GetUserDataList(){
+    this.userdatasRef = this.db.list('User');
+    return this.userdatasRef;
   }
 
   // Fetch Single RoomRent Object

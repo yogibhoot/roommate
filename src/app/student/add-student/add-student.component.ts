@@ -16,7 +16,7 @@ import { finalize } from 'rxjs/operators';
 export class AddStudentComponent implements OnInit {
 
 
-  imgSrc: string = "";
+  imgSrc: string = "/src/assets/img/userphoto.jpg";
   selectedImage: any = null;
   isSubmitted: boolean = false;
 

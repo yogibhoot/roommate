@@ -94,12 +94,6 @@ export class RoomComponent implements OnInit {
   
   ResetForm() {
     this.roomfinderForm.reset();
-    this.roomfinderForm.setValue({
-      location: '',
-      rent: '',
-      member: '',
-      return: ''
-    });
     this.imgSrc = '/assets/img/mikhail-vasilyev-gGC63oug3iY-unsplash.jpg';
     this.isSubmitted = false;
     this.selectedImage = null;

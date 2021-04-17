@@ -25,9 +25,7 @@ export class UserposttimelineComponent implements OnInit {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userId = user.uid;
-        console.warn(this.userId)
         this.userData = user;
-        console.log(this.userData)
       }
     })
   }
@@ -48,7 +46,6 @@ export class UserposttimelineComponent implements OnInit {
   }
 
   dataState() {
-
     this.crudApi.GetRoomRentList().valueChanges().subscribe(data => {
       console.log("userId data", data)
       this.preLoader = false;
